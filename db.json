@@ -1,0 +1,144 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "user": {
+        "id": "abc123",
+        "name": "TS Chang"
+      },
+      "title": "5 Penciles",
+      "category": "Family & Personal",
+      "amount": 20,
+      "date": "2020-04-28T00:01:00.000Z",
+      "time": "10:00",
+      "location": "RGB bookstore",
+      "description": "To write some memo."
+    },
+    {
+      "id": 3,
+      "user": {
+        "id": "abc123",
+        "name": "TS Chang"
+      },
+      "title": "Medicine tablet",
+      "category": "Healthcare",
+      "amount": 150,
+      "date": "2020-05-27T00:01:00.000Z",
+      "time": "14:00",
+      "location": "Med care center",
+      "description": "Feel dizzy at afternoon."
+    },
+    {
+      "id": 4,
+      "user": {
+        "id": "abc123",
+        "name": "TS Chang"
+      },
+      "title": "Fuel my car",
+      "category": "Car",
+      "amount": 800,
+      "date": "2020-05-27T00:01:00.000Z",
+      "time": "08:00",
+      "location": "East gas station",
+      "description": "As usual"
+    },
+    {
+      "id": 40527,
+      "user": {
+        "id": "abc123",
+        "name": "TS Chang"
+      },
+      "title": "yyy",
+      "category": "Car",
+      "amount": "80",
+      "date": "2020-04-15T00:01:00.000Z",
+      "time": "7:00",
+      "location": "",
+      "description": ""
+    },
+    {
+      "id": 92664,
+      "user": {
+        "id": "abc123",
+        "name": "TS Chang"
+      },
+      "title": "nnn",
+      "category": "Food & Drink",
+      "amount": "500",
+      "date": "2020-04-21T13:19:00.000Z",
+      "time": "13:00",
+      "location": "",
+      "description": ""
+    },
+    {
+      "id": 78285,
+      "user": {
+        "id": "abc123",
+        "name": "TS Chang"
+      },
+      "title": "ppp",
+      "category": "Work",
+      "amount": "300",
+      "date": "2020-04-23T13:29:00.000Z",
+      "time": "9:00",
+      "location": "",
+      "description": ""
+    },
+    {
+      "id": 97556,
+      "user": {
+        "id": "abc123",
+        "name": "TS Chang"
+      },
+      "title": "kkk",
+      "category": "Travel",
+      "amount": "400",
+      "date": "2020-04-15T13:38:00.000Z",
+      "time": "6:00",
+      "location": "",
+      "description": ""
+    },
+    {
+      "id": 59354,
+      "user": {
+        "id": "abc123",
+        "name": "TS Chang"
+      },
+      "title": "bvc",
+      "category": "Travel",
+      "amount": "45",
+      "date": "2020-04-01T16:01:00.000Z",
+      "time": "11:00",
+      "location": "",
+      "description": ""
+    },
+    {
+      "id": 47851,
+      "user": {
+        "id": "abc123",
+        "name": "TS Chang"
+      },
+      "title": "bsd",
+      "category": "Education",
+      "amount": "43",
+      "date": "2020-04-30T16:02:00.000Z",
+      "time": "8:00",
+      "location": "",
+      "description": ""
+    },
+    {
+      "id": 16933,
+      "user": {
+        "id": "abc123",
+        "name": "TS Chang"
+      },
+      "title": "nnn",
+      "category": "Travel",
+      "amount": "45",
+      "date": "2020-04-05T17:36:00.000Z",
+      "time": "19:00",
+      "location": "",
+      "description": ""
+    }
+  ]
+}
