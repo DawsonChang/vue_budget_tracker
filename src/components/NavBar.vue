@@ -1,5 +1,5 @@
-<template>
-  <v-app :style="{background: $vuetify.theme.themes[theme].background}">
+<template >
+  <v-app id="App" :style="{background: $vuetify.theme.themes[theme].background}">
     <v-navigation-drawer
       v-model="drawer"
       class="primary accent-4"
@@ -7,7 +7,7 @@
       absolute
       temporary
       app
-      style="position:fixed; top:0; left:0; "
+      style="position:fixed; top:0; left:0;"
     >
       <v-list>
         <v-list-item v-for="item in items" :key="item.title" link @click="listFunction(item)">
@@ -34,10 +34,13 @@
         <router-link class="toolbarTitle" :to="{ name: 'event-list'}">BudgetTracker</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn text rounded>Login</v-btn>
+      <v-btn text rounded>Search</v-btn>
+      <v-avatar color="#F9A825" size="40">
+        <span class="white--text headline">{{ getFirstLetter }}</span>
+      </v-avatar>
     </v-app-bar>
 
-    <v-content class="pb-0">
+    <v-content id="screen" class="pb-0">
       <v-container fluid class="ma-0 pa-0">
         <router-view :key="$route.fullPath" />
       </v-container>
@@ -51,6 +54,8 @@ import { mdiArrowLeft } from "@mdi/js";
 import { mdiViewDashboard } from "@mdi/js";
 import { mdiAccountBox } from "@mdi/js";
 import { mdiGavel } from "@mdi/js";
+import { mdiPalette } from "@mdi/js";
+
 export default {
   data: () => ({
     drawer: false,
@@ -58,7 +63,7 @@ export default {
     items: [
       { title: "Back", icon: mdiArrowLeft },
       { title: "Dashboard", icon: mdiViewDashboard },
-      { title: "Theme", icon: mdiViewDashboard },
+      { title: "Theme", icon: mdiPalette },
       { title: "Account", icon: mdiAccountBox },
       { title: "Admin", icon: mdiGavel }
     ]
@@ -69,9 +74,13 @@ export default {
         case "Back":
           this.drawer = false;
           break;
+        case "Dashboard":
+          this.$router.push({
+            name: "dash-board"
+          });
+          break;
         case "Theme":
           this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
-          // this.$vuetify.theme.themes.dark.card = "#fff";
           break;
         default:
           console.log(item.title);
@@ -81,17 +90,25 @@ export default {
   computed: {
     theme() {
       return this.$vuetify.theme.dark ? "dark" : "light";
+    },
+    getFirstLetter() {
+      const user = this.$store.state.user.user;
+      return user.name.substring(0, 1);
     }
   }
 };
 </script>
+
 
 <style scoped>
 .toolbarTitle {
   text-decoration: none;
   color: white;
 }
-/* .toolbarTitle:hover {
-  color: #e0e0e0;
-} */
+.toolbarTitle:hover {
+  opacity: 50%;
+}
+#screen {
+  min-height: 100%;
+}
 </style>

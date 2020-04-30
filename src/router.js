@@ -3,6 +3,7 @@ import Router from "vue-router";
 import EventCreate from "./views/EventCreate.vue";
 import EventList from "./views/EventList.vue";
 import EventShow from "./views/EventShow.vue";
+import Dashboard from "./views/Dashboard.vue";
 import NotFound from "./views/NotFound.vue";
 import NetworkIssue from "./views/NetworkIssue.vue";
 import store from "@/store/store";
@@ -47,6 +48,11 @@ const router = new Router({
       path: "/create",
       name: "event-create",
       component: EventCreate,
+    },
+    {
+      path: "/dashboard",
+      name: "dash-board",
+      component: Dashboard,
     },
     {
       path: "/network-issue",

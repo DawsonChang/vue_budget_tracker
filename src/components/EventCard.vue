@@ -10,6 +10,7 @@
           large
           v-show="active"
           class="delete icon-close-box"
+          color="#424242"
           @click="dialog = true"
         >{{ mdiCloseBox }}</v-icon>
         <v-dialog v-model="dialog" max-width="400">
@@ -44,7 +45,7 @@
             <span>
               <v-icon color="#616161">{{ mdiClockOutline }}</v-icon>
             </span>
-            <span class="newFont secondSpan">{{ getDate() }} at {{ event.time }}</span>
+            <span class="newFont secondSpan">{{ event.date }} at {{ event.time }}</span>
           </v-card-text>
         </router-link>
       </div>
@@ -76,10 +77,6 @@ export default {
     };
   },
   methods: {
-    getDate() {
-      const newDate = this.event.date.toString();
-      return newDate.substring(0, 10);
-    },
     getIcon(category) {
       const curr = this.categories.find(cat => cat.name === category);
       return curr.icon;

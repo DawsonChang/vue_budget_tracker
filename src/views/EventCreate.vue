@@ -1,10 +1,24 @@
 <template>
-  <v-container class="action">
+  <v-container class="action" id="App">
     <v-row>
       <v-col>
         <h1>Create a new budget</h1>
-        <v-form @submit.prevent="createEvent" id="check-form">
-          <v-text-field v-model="newEvent.title" label="Title" type="text"></v-text-field>
+        <v-form
+          @submit.prevent="createEvent"
+          id="check-form"
+          ref="form"
+          v-model="valid"
+          lazy-validation
+        >
+          <v-text-field
+            v-model="newEvent.title"
+            label="Title"
+            type="text"
+            :rules="titleRules"
+            required
+          ></v-text-field>
+
+          <br />
 
           <v-select
             v-model="newEvent.category"
@@ -15,6 +29,8 @@
             return-object
             hide-details
             single-line
+            :rules="categoryRules"
+            required
           >
             <template slot="selection" slot-scope="data">
               <span>
@@ -36,7 +52,17 @@
             </template>
           </v-select>
 
-          <v-text-field v-model="newEvent.amount" label="amount" type="number"></v-text-field>
+          <br />
+
+          <v-text-field
+            v-model="newEvent.amount"
+            label="Cost"
+            type="text"
+            :rules="amountRules"
+            required
+          ></v-text-field>
+
+          <br />
 
           <v-menu
             v-model="fromDateMenu"
@@ -48,7 +74,14 @@
             min-width="290px"
           >
             <template v-slot:activator="{ on }">
-              <v-text-field label="Select a date" readonly :value="fromDateDisp" v-on="on"></v-text-field>
+              <v-text-field
+                label="Select a date"
+                readonly
+                :value="fromDateDisp"
+                v-on="on"
+                :rules="dateRules"
+                required
+              ></v-text-field>
             </template>
             <v-date-picker
               locale="en-in"
@@ -57,9 +90,9 @@
               @input="fromDateMenu = false"
             ></v-date-picker>
           </v-menu>
-
+          <br />
           <v-select v-model="newEvent.time" :items="times" label="Select a time"></v-select>
-
+          <br />
           <h3>Where you comsume?</h3>
           <v-text-field v-model="newEvent.location" label="Location" type="text"></v-text-field>
 
@@ -69,10 +102,15 @@
             label="Description"
             rows="4"
             row-height="30"
-            shaped
           ></v-textarea>
 
-          <v-btn type="submit" color="success" form="check-form">Submit</v-btn>
+          <v-btn
+            :disabled="!valid"
+            type="submit"
+            color="success"
+            form="check-form"
+            @click="validate"
+          >Submit</v-btn>
         </v-form>
       </v-col>
     </v-row>
@@ -101,7 +139,16 @@ export default {
       categories: this.$store.state.categories,
       newEvent: this.createFreshEventObject(),
       fromDateMenu: false,
-      fromDateVal: null
+      fromDateVal: null,
+      valid: true,
+      titleRules: [v => !!v || "Title is required"],
+      categoryRules: [v => !!v || "Category is required"],
+      amountRules: [
+        v => !!v || "Cost is required",
+        v => /^\d+$/.test(v) || "Cost must be number",
+        v => /^[^0]/.test(v) || "Cost must be a valid number"
+      ],
+      dateRules: [v => !!v || "Date is required"]
     };
   },
   methods: {
@@ -131,12 +178,15 @@ export default {
         user: user,
         title: "",
         category: "",
-        amount: 0,
+        amount: "",
         date: "",
-        time: "",
+        time: "0:00",
         location: "",
         description: ""
       };
+    },
+    validate() {
+      this.$refs.form.validate();
     }
   },
   computed: {
@@ -158,6 +208,12 @@ export default {
 </script>
 
 <style scoped>
+html,
+body,
+#App {
+  height: 120%;
+}
+
 .field {
   margin-bottom: 24px;
 }
@@ -167,10 +223,9 @@ export default {
 }
 
 .action {
-  display: flex;
-  width: 50%;
+  width: 40%;
   align-items: center;
   justify-content: center;
-  height: 115vh;
+  height: 140px;
 }
 </style>
