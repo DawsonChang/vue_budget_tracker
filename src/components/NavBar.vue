@@ -1,17 +1,16 @@
 <template>
-  <v-app>
-    <v-navigation-drawer v-model="drawer" class="primary accent-4" dark absolute temporary app>
+  <v-app :style="{background: $vuetify.theme.themes[theme].background}">
+    <v-navigation-drawer
+      v-model="drawer"
+      class="primary accent-4"
+      dark
+      absolute
+      temporary
+      app
+      style="position:fixed; top:0; left:0; "
+    >
       <v-list>
-        <v-list-item link @click="drawer = false">
-          <v-list-item-icon>
-            <v-icon>{{ mdiArrowLeft }}</v-icon>
-          </v-list-item-icon>
-          <v-list-item-content>
-            <v-list-item-title>Back</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-
-        <v-list-item v-for="item in items" :key="item.title" link>
+        <v-list-item v-for="item in items" :key="item.title" link @click="listFunction(item)">
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -24,14 +23,16 @@
 
       <template v-slot:append>
         <div class="pa-2">
-          <v-btn color="success" block>Logout</v-btn>
+          <v-btn color="error" block>Logout</v-btn>
         </div>
       </template>
     </v-navigation-drawer>
 
     <v-app-bar color="primary" dark clipped-left app>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
-      <v-toolbar-title>BudgetTracker</v-toolbar-title>
+      <v-toolbar-title>
+        <router-link class="toolbarTitle" :to="{ name: 'event-list'}">BudgetTracker</router-link>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn text rounded>Login</v-btn>
     </v-app-bar>
@@ -55,13 +56,42 @@ export default {
     drawer: false,
     mdiArrowLeft,
     items: [
+      { title: "Back", icon: mdiArrowLeft },
       { title: "Dashboard", icon: mdiViewDashboard },
+      { title: "Theme", icon: mdiViewDashboard },
       { title: "Account", icon: mdiAccountBox },
       { title: "Admin", icon: mdiGavel }
     ]
-  })
+  }),
+  methods: {
+    listFunction(item) {
+      switch (item.title) {
+        case "Back":
+          this.drawer = false;
+          break;
+        case "Theme":
+          this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
+          // this.$vuetify.theme.themes.dark.card = "#fff";
+          break;
+        default:
+          console.log(item.title);
+      }
+    }
+  },
+  computed: {
+    theme() {
+      return this.$vuetify.theme.dark ? "dark" : "light";
+    }
+  }
 };
 </script>
 
 <style scoped>
+.toolbarTitle {
+  text-decoration: none;
+  color: white;
+}
+/* .toolbarTitle:hover {
+  color: #e0e0e0;
+} */
 </style>

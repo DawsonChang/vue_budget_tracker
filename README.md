@@ -1,4 +1,4 @@
-# vuetify-test
+# budget-tracker
 
 ## Project setup
 ```

@@ -1,63 +1,91 @@
 <template>
-  <div>
-    <h1>Create an event</h1>
-    <form @submit.prevent="createEvent">
-      <h3>Budget Name</h3>
-      <div class="field">
-        <label>Title</label>
-        <input v-model="newEvent.title" type="text" placeholder="Add an event title" />
-      </div>
+  <v-container class="action">
+    <v-row>
+      <v-col>
+        <h1>Create a new budget</h1>
+        <v-form @submit.prevent="createEvent" id="check-form">
+          <v-text-field v-model="newEvent.title" label="Title" type="text"></v-text-field>
 
-      <label>Select a category</label>
-      <select v-model="newEvent.category">
-        <option v-for="cat in categories" :key="cat">
-          <v-icon>{{ cat.icon }}</v-icon>
-          {{ cat.name }}
-        </option>
-      </select>
+          <v-select
+            v-model="newEvent.category"
+            :items="categories"
+            name="category"
+            label="Select a category"
+            item-text="name"
+            return-object
+            hide-details
+            single-line
+          >
+            <template slot="selection" slot-scope="data">
+              <span>
+                <v-icon>{{ data.item.icon }}</v-icon>
+              </span>
+              <span class="secondSpan">{{ data.item.name }}</span>
+            </template>
+            <template slot="item" slot-scope="data">
+              <v-list-tile-avatar>
+                <span>
+                  <v-icon>{{ data.item.icon }}</v-icon>
+                </span>
+              </v-list-tile-avatar>
+              <v-list-tile-content>
+                <span class="secondSpan">
+                  <v-list-tile-title>{{ data.item.name }}</v-list-tile-title>
+                </span>
+              </v-list-tile-content>
+            </template>
+          </v-select>
 
-      <h3>Amount</h3>
-      <div class="field">
-        <label>Amount</label>
-        <input v-model="newEvent.amount" type="number" placeholder="Add a number" />
-      </div>
+          <v-text-field v-model="newEvent.amount" label="amount" type="number"></v-text-field>
 
-      <h3>When is your event?</h3>
-      <div class="field">
-        <label>Date</label>
-        <datepicker v-model="newEvent.date" placeholder="Select a date" />
-      </div>
+          <v-menu
+            v-model="fromDateMenu"
+            :close-on-content-click="false"
+            :nudge-right="40"
+            transition="scale-transition"
+            offset-y
+            max-width="290px"
+            min-width="290px"
+          >
+            <template v-slot:activator="{ on }">
+              <v-text-field label="Select a date" readonly :value="fromDateDisp" v-on="on"></v-text-field>
+            </template>
+            <v-date-picker
+              locale="en-in"
+              v-model="fromDateVal"
+              no-title
+              @input="fromDateMenu = false"
+            ></v-date-picker>
+          </v-menu>
 
-      <div class="field">
-        <label>Select a time</label>
-        <select v-model="newEvent.time">
-          <option v-for="time in times" :key="time">{{ time }}</option>
-        </select>
-      </div>
+          <v-select v-model="newEvent.time" :items="times" label="Select a time"></v-select>
 
-      <h3>Where you comsume?</h3>
-      <div class="field">
-        <label>Location</label>
-        <input v-model="newEvent.location" type="text" placeholder="Add a location" />
-      </div>
+          <h3>Where you comsume?</h3>
+          <v-text-field v-model="newEvent.location" label="Location" type="text"></v-text-field>
 
-      <div class="field">
-        <label>Description</label>
-        <input v-model="newEvent.description" type="text" placeholder="Add a description" />
-      </div>
+          <v-textarea
+            v-model="newEvent.description"
+            auto-grow
+            label="Description"
+            rows="4"
+            row-height="30"
+            shaped
+          ></v-textarea>
 
-      <input type="submit" class="button -fill-gradient" value="Submit" />
-    </form>
-  </div>
+          <v-btn type="submit" color="success" form="check-form">Submit</v-btn>
+        </v-form>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
-import Datepicker from "vuejs-datepicker";
+// import Datepicker from "vuejs-datepicker";
 import NProgress from "nprogress";
 
 export default {
   components: {
-    Datepicker
+    // Datepicker
   },
   created() {
     // clean up the event object
@@ -71,13 +99,16 @@ export default {
     return {
       times,
       categories: this.$store.state.categories,
-      newEvent: this.createFreshEventObject()
-      // currPage: parseInt(this.$store.state.event.eventsTotal / 3) + 1
+      newEvent: this.createFreshEventObject(),
+      fromDateMenu: false,
+      fromDateVal: null
     };
   },
   methods: {
     createEvent() {
       NProgress.start();
+      this.newEvent.date = this.fromDateVal;
+      this.newEvent.category = this.newEvent.category.name;
       this.$store
         .dispatch("event/createEvent", this.newEvent)
         .then(() => {
@@ -107,6 +138,21 @@ export default {
         description: ""
       };
     }
+  },
+  computed: {
+    fromDateDisp() {
+      return this.fromDateVal;
+    }
+  },
+
+  watch: {
+    pickerDate() {
+      this.notes = [
+        this.allNotes[Math.floor(Math.random() * 5)],
+        this.allNotes[Math.floor(Math.random() * 5)],
+        this.allNotes[Math.floor(Math.random() * 5)]
+      ].filter((value, index, self) => self.indexOf(value) === index);
+    }
   }
 };
 </script>
@@ -114,5 +160,17 @@ export default {
 <style scoped>
 .field {
   margin-bottom: 24px;
+}
+.secondSpan {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+.action {
+  display: flex;
+  width: 50%;
+  align-items: center;
+  justify-content: center;
+  height: 115vh;
 }
 </style>

@@ -1,7 +1,11 @@
 <template>
   <v-hover v-slot:default="{ hover }" open-delay="50" close-delay="50">
-    <v-card width="400" class="mx-auto mt-5 event-card -shadow" :elevation="hover ? 10 : 4">
-      <div class @mouseover="active = true" @mouseleave="active = false">
+    <v-card
+      width="400"
+      class="mx-auto mt-5 event-card -shadow eventCard"
+      :elevation="hover ? 10 : 4"
+    >
+      <div @mouseover="active = true" @mouseleave="active = false">
         <v-icon
           large
           v-show="active"
@@ -17,22 +21,30 @@
           class="event-link"
           :to="{ name: 'event-show', params: { id: event.id, page: page } }"
         >
-          <v-card-title class="headline font-weight-bold pa-1 pl-3">{{ event.title }}</v-card-title>
+          <v-card-title class="headline font-weight-bold pa-1 pl-3">
+            <span class="newFont">{{ event.title }}</span>
+          </v-card-title>
 
           <v-card-text class="subtitle-1 ma-0 pa-1 pl-3">
             <span class="font-weight-medium">
-              <v-icon>{{ mdiCashMultiple }}</v-icon>
-              ${{ event.amount }}
+              <span>
+                <v-icon color="#616161">{{ mdiCashMultiple }}</v-icon>
+              </span>
+              <span class="newFont secondSpan">${{ event.amount }}</span>
             </span>
             <span class="cat">
-              <v-icon>{{ getIcon(event.category) }}</v-icon>
-              {{ event.category }}
+              <span>
+                <v-icon color="#616161">{{ getIcon(event.category) }}</v-icon>
+              </span>
+              <span class="newFont secondSpan">{{ event.category }}</span>
             </span>
           </v-card-text>
 
           <v-card-text class="font-italic subtitle-1 ma-0 pa-1 pl-3 pa-1 pl-3">
-            <v-icon>{{ mdiClockOutline }}</v-icon>
-            {{ getDate() }} at {{ event.time }}
+            <span>
+              <v-icon color="#616161">{{ mdiClockOutline }}</v-icon>
+            </span>
+            <span class="newFont secondSpan">{{ getDate() }} at {{ event.time }}</span>
           </v-card-text>
         </router-link>
       </div>
@@ -77,6 +89,13 @@ export default {
 </script>
 
 <style scoped>
+.newFont {
+  font-family: "Kalam", cursive;
+}
+.secondSpan {
+  display: inline-block;
+  margin-left: 5px;
+}
 .delete {
   padding-top: 1px;
   padding-right: 1px;

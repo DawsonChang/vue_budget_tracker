@@ -8,4 +8,17 @@ export default new Vuetify({
   icons: {
     iconfont: "mdi",
   },
+  theme: {
+    themes: {
+      light: { background: "#F5F5F5" },
+      dark: {
+        primary: "#3f51b5",
+        anchor: "#8c9eff",
+        error: "#b71c1c",
+        eventCard: "#FFF59D",
+        cardIcon: "#616161",
+        background: "#212121",
+      },
+    },
+  },
 });

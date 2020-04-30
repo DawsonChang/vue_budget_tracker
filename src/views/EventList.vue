@@ -2,11 +2,11 @@
   <v-container fluid class="mx-auto">
     <ul class="titleLine" align="center">
       <li>
-        <h1>Budget for: {{ user.user.name }}</h1>
+        <h1 class="newFont">Budget for: {{ user.user.name }}</h1>
       </li>
       <li>
-        <v-btn class="create" outlined medium fab color="teal" :to="{ name: 'event-create' }">
-          <v-icon>mdi-pencil</v-icon>
+        <v-btn class="create" fab small dark color="primary" :to="{ name: 'event-create' }">
+          <v-icon small>mdi-pencil</v-icon>
         </v-btn>
       </li>
     </ul>
@@ -20,7 +20,7 @@
     </transition-group>
 
     <v-card width="400" class="mx-auto mt-5">
-      <div class="pageBlock">
+      <div class="pageBlock newFont">
         <div class="prevPage">
           <template v-if="page != 1">
             <router-link
@@ -101,6 +101,10 @@ export default {
 </script>
 
 <style scoped>
+.newFont {
+  font-family: "Kalam", cursive;
+}
+
 .titleLine {
   text-align: center;
 }
