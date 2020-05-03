@@ -34,7 +34,7 @@
       </template>
     </v-navigation-drawer>
 
-    <v-app-bar color="primary" dark clipped-left app>
+    <v-app-bar color="primary" dark clipped-left app height="50">
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-toolbar-title>
         <router-link class="toolbarTitle" :to="{ name: 'event-list'}">BudgetTracker</router-link>

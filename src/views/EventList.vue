@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="mx-auto">
+  <v-container fluid class="mx-auto pb-0">
     <ul class="titleLine" align="center">
       <li>
         <h1 class="newFont">Budget for: {{ user.user.name }}</h1>
@@ -19,7 +19,7 @@
       <EventCard v-for="event in event.events" :key="event.id" :event="event" :page="page" />
     </transition-group>
 
-    <v-card width="400" class="mx-auto mt-5">
+    <v-card width="400" class="mx-auto mt-0">
       <div class="pageBlock newFont">
         <div class="prevPage">
           <template v-if="page != 1">
@@ -120,7 +120,7 @@ export default {
   transform: scale(1.1);
 }
 .pageBlock {
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 .prevPage {
   float: left;
