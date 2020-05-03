@@ -2,12 +2,12 @@
 
 ### Deploy on Heroku
 ```
-https://budget-tracker-dsc.herokuapp.com/
+[a link](https://budget-tracker-dsc.herokuapp.com/)
 ```
 
 ### Database(json-server) on Heroku
 ```
-https://json-server-budget.herokuapp.com/
+[a link](https://json-server-budget.herokuapp.com/)
 ```
 
 ## Project setup(clone to localhost)
@@ -20,7 +20,10 @@ npm install
 npm run serve
 ```
 ##### Don't forget to go to root directory -> /src/services/EventService.js
-##### Change ```baseURL: "https://json-server-budget.herokuapp.com"``` to ```baseURL: "http://localhost:3000"``` 
+##### Change 
+```baseURL: "https://json-server-budget.herokuapp.com"```
+##### to 
+```baseURL: "http://localhost:3000"``` 
 ##### And run:
 ```
 json-server --watch db.json
