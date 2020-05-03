@@ -1,14 +1,14 @@
 # budget-tracker
 
 ### Deploy on Heroku
-```
-[a link](https://budget-tracker-dsc.herokuapp.com/)
-```
+
+https://budget-tracker-dsc.herokuapp.com/
+
 
 ### Database(json-server) on Heroku
-```
-[a link](https://json-server-budget.herokuapp.com/)
-```
+
+https://json-server-budget.herokuapp.com/
+
 
 ## Project setup(clone to localhost)
 ```
