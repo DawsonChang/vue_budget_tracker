@@ -2,13 +2,13 @@
   <v-container class="action" id="App">
     <v-row>
       <v-col>
-        <h1>Create a new budget</h1>
+        <h1 class="newFontTitle">Create a new budget</h1>
         <v-form
           @submit.prevent="createEvent"
           id="check-form"
           ref="form"
           v-model="valid"
-          lazy-validation
+          :lazy-validation="lazy"
         >
           <v-text-field
             v-model="newEvent.title"
@@ -39,16 +39,13 @@
               <span class="secondSpan">{{ data.item.name }}</span>
             </template>
             <template slot="item" slot-scope="data">
-              <v-list-tile-avatar>
+              <v-avatar>
                 <span>
                   <v-icon>{{ data.item.icon }}</v-icon>
                 </span>
-              </v-list-tile-avatar>
-              <v-list-tile-content>
-                <span class="secondSpan">
-                  <v-list-tile-title>{{ data.item.name }}</v-list-tile-title>
-                </span>
-              </v-list-tile-content>
+              </v-avatar>
+
+              <span class="secondSpan">{{ data.item.name }}</span>
             </template>
           </v-select>
 
@@ -212,6 +209,11 @@ html,
 body,
 #App {
   height: 120%;
+}
+
+.newFontTitle {
+  font-family: "Kalam", cursive;
+  font-size: 40px;
 }
 
 .field {

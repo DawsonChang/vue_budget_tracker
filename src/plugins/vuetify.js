@@ -17,7 +17,7 @@ export default new Vuetify({
         primary: "#3f51b5",
         anchor: "#8c9eff",
         error: "#b71c1c",
-        eventCard: "#FFF59D",
+        eventCard: "#EEEEEE",
         background: "#212121",
       },
     },

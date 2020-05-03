@@ -46,6 +46,11 @@ export const actions = {
     //   console.log('There was a problem creating your event: ' + error.message)
     // })
   },
+  fetchEventsDashBoard({ commit }) {
+    return EventService.getEventsDashBoard().then((response) => {
+      commit("SET_EVENTS", response.data);
+    });
+  },
   fetchEvent({ commit, getters }, id) {
     const event = getters.getEventById(id);
     if (event) {

@@ -10,7 +10,13 @@
       style="position:fixed; top:0; left:0;"
     >
       <v-list>
-        <v-list-item v-for="item in items" :key="item.title" link @click="listFunction(item)">
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          link
+          @click="listFunction(item)"
+          :disabled="item.dis"
+        >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -34,7 +40,9 @@
         <router-link class="toolbarTitle" :to="{ name: 'event-list'}">BudgetTracker</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn text rounded>Search</v-btn>
+      <v-btn text rounded :disabled="true">Document</v-btn>
+      <v-btn text rounded :disabled="true">Search</v-btn>
+      <v-btn text rounded :disabled="true">Support</v-btn>
       <v-avatar color="#F9A825" size="40">
         <span class="white--text headline">{{ getFirstLetter }}</span>
       </v-avatar>
@@ -61,11 +69,11 @@ export default {
     drawer: false,
     mdiArrowLeft,
     items: [
-      { title: "Back", icon: mdiArrowLeft },
-      { title: "Dashboard", icon: mdiViewDashboard },
-      { title: "Theme", icon: mdiPalette },
-      { title: "Account", icon: mdiAccountBox },
-      { title: "Admin", icon: mdiGavel }
+      { title: "Back", icon: mdiArrowLeft, dis: false },
+      { title: "Dashboard", icon: mdiViewDashboard, dis: false },
+      { title: "Theme", icon: mdiPalette, dis: false },
+      { title: "Account", icon: mdiAccountBox, dis: true },
+      { title: "Admin", icon: mdiGavel, dis: true }
     ]
   }),
   methods: {
@@ -105,9 +113,7 @@ export default {
   text-decoration: none;
   color: white;
 }
-.toolbarTitle:hover {
-  opacity: 50%;
-}
+
 #screen {
   min-height: 100%;
 }

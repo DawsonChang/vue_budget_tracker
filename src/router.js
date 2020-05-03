@@ -53,6 +53,7 @@ const router = new Router({
       path: "/dashboard",
       name: "dash-board",
       component: Dashboard,
+      props: true,
     },
     {
       path: "/network-issue",
