@@ -1,4 +1,4 @@
-# budget-tracker
+# Budget-Tracker
 
 ### Deploy on Heroku
 
