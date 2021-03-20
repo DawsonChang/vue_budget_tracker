@@ -12,12 +12,12 @@ https://json-server-budget.herokuapp.com/
 
 ## Project setup(clone to localhost)
 ```
-npm install
+yarn
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+yarn serve
 ```
 ##### Don't forget to go to root directory -> /src/services/EventService.js
 ##### Change 
