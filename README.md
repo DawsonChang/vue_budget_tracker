@@ -12,12 +12,12 @@ https://json-server-budget.herokuapp.com/
 
 ## Project setup(clone to localhost)
 ```
-npm install
+yarn
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+yarn serve
 ```
 ##### Don't forget to go to root directory -> /src/services/EventService.js
 ##### Change 
@@ -31,12 +31,12 @@ json-server --watch db.json
 
 ### Compiles and minifies for production
 ```
-npm run build
+yarn build
 ```
 
 ### Lints and fixes files
 ```
-npm run lint
+yarn lint
 ```
 
 ### Customize configuration
