@@ -7,7 +7,6 @@ import Dashboard from "./views/Dashboard.vue";
 import NotFound from "./views/NotFound.vue";
 import NetworkIssue from "./views/NetworkIssue.vue";
 import store from "@/store/store";
-import NProgress from "nprogress";
 
 Vue.use(Router);
 
@@ -71,15 +70,6 @@ const router = new Router({
       redirect: { name: "404", params: { resource: "page" } },
     },
   ],
-});
-
-router.beforeEach((routeTo, routeFrom, next) => {
-  NProgress.start();
-  next();
-});
-
-router.afterEach(() => {
-  NProgress.done();
 });
 
 export default router;

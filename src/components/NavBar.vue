@@ -48,16 +48,15 @@
       </v-avatar>
     </v-app-bar>
 
-    <v-content id="screen" class="pb-0">
+    <v-main id="screen" class="pb-0">
       <v-container fluid class="ma-0 pa-0">
         <router-view :key="$route.fullPath" />
       </v-container>
-    </v-content>
+    </v-main>
   </v-app>
 </template>
 
 <script>
-import "nprogress/nprogress.css";
 import { mdiArrowLeft } from "@mdi/js";
 import { mdiViewDashboard } from "@mdi/js";
 import { mdiAccountBox } from "@mdi/js";

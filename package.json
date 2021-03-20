@@ -10,11 +10,11 @@
   },
   "dependencies": {
     "axios": ">=0.21.1",
+    "babel-plugin-component": "^1.1.1",
     "core-js": "^3.6.4",
     "gsap": "^3.2.6",
     "json-server": "^0.16.3",
     "lodash": "^4.17.15",
-    "nprogress": "^0.2.0",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
     "vuejs-datepicker": "^1.6.2",

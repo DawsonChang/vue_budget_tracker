@@ -51,6 +51,7 @@ import { mapState } from "vuex";
 import store from "@/store/store";
 
 function getPageEvents(routeTo, next) {
+  // 第一次進入此頁 routeTo.query.page 會是 undefined，這時就給他值為 1
   const currentPage = parseInt(routeTo.query.page) || 1;
   store
     .dispatch("event/fetchEvents", {
@@ -80,9 +81,13 @@ export default {
     EventCard
   },
   beforeRouteEnter(routeTo, routeFrom, next) {
+    console.log("beforeRouterEnter!!");
+    console.log(routeTo.query.page);
     getPageEvents(routeTo, next);
   },
   beforeRouteUpdate(routeTo, routeFrom, next) {
+    console.log("beforeRouterUpdate!");
+    console.log(routeTo);
     getPageEvents(routeTo, next);
   },
   computed: {
