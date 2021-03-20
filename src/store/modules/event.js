@@ -41,10 +41,10 @@ export const actions = {
     return EventService.getEvents(state.perPage, page).then((response) => {
       commit("SET_EVENTSTOTAL", response.headers["x-total-count"]);
       commit("SET_EVENTS", response.data);
-    });
-    // .catch(error => {
-    //   console.log('There was a problem creating your event: ' + error.message)
-    // })
+    })
+    .catch(error => {
+      console.log('There was a problem creating your event: ' + error.message)
+    })
   },
   fetchEventsDashBoard({ commit }) {
     return EventService.getEventsDashBoard().then((response) => {

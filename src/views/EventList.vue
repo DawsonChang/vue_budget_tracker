@@ -11,10 +11,12 @@
       </li>
     </ul>
 
-    <transition-group name="slide-right" tag="div" appear v-if="isNext">
+    <!-- 向右滑的動畫 -->
+    <transition-group name="slide-right" tag="div" appear v-if="isMoveRight">
       <EventCard v-for="event in event.events" :key="event.id" :event="event" :page="page" />
     </transition-group>
 
+    <!-- 向左滑的動畫 -->
     <transition-group name="slide-left" tag="div" appear v-else>
       <EventCard v-for="event in event.events" :key="event.id" :event="event" :page="page" />
     </transition-group>
@@ -22,20 +24,22 @@
     <v-card width="400" class="mx-auto mt-0">
       <div class="pageBlock newFont">
         <div class="prevPage">
+          <!-- 如果不是第一頁才有往前一頁的按鈕 -->
           <template v-if="page != 1">
             <router-link
               class="routerLink"
-              :to="{ name: 'event-list', query: { page: page - 1 }, params:{ isNext: false } }"
+              :to="{ name: 'event-list', query: { page: page - 1 }, params:{ isMoveRight: false } }"
               rel="prev"
             >{{ prevPage }}</router-link>
           </template>
         </div>
 
         <div class="nextPage">
+          <!-- 如果不是最後一頁才有往後一頁的按鈕 -->
           <template v-if="hasNextPage">
             <router-link
               class="routerLink"
-              :to="{ name: 'event-list', query: { page: page + 1 }, params:{ isNext: true } }"
+              :to="{ name: 'event-list', query: { page: page + 1 }, params:{ isMoveRight: true } }"
               rel="next"
             >{{ nextPage }}</router-link>
           </template>
@@ -43,6 +47,7 @@
       </div>
     </v-card>
   </v-container>
+  
 </template>
 
 <script>
@@ -53,17 +58,14 @@ import store from "@/store/store";
 function getPageEvents(routeTo, next) {
   // 第一次進入此頁 routeTo.query.page 會是 undefined，這時就給他值為 1
   const currentPage = parseInt(routeTo.query.page) || 1;
-  store
-    .dispatch("event/fetchEvents", {
+  store.dispatch("event/fetchEvents", {
       page: currentPage
-    })
-    .then(() => {
-      routeTo.params.page = currentPage;
-      next();
-    })
-    .catch(() => {
-      next({ name: "network-issue" });
-    });
+  }).then(() => {
+    routeTo.params.page = currentPage;
+    next();
+  }).catch(() => {
+    next({ name: "network-issue" });
+  });
 }
 
 export default {
@@ -72,7 +74,7 @@ export default {
       type: Number,
       required: true
     },
-    isNext: {
+    isMoveRight: {
       type: Boolean
     }
   },
@@ -80,14 +82,15 @@ export default {
   components: {
     EventCard
   },
+  // 第一次進入此頁時會 call this function
   beforeRouteEnter(routeTo, routeFrom, next) {
-    console.log("beforeRouterEnter!!");
-    console.log(routeTo.query.page);
     getPageEvents(routeTo, next);
   },
+  // 如果 router 有任何變化會 call this function
+  // 例如按頁面中的 Prev Page 或 Next Page
+  // 然後因為呼叫此函數後 store 的內容會更新
+  // html render 的部分也會隨之更新
   beforeRouteUpdate(routeTo, routeFrom, next) {
-    console.log("beforeRouterUpdate!");
-    console.log(routeTo);
     getPageEvents(routeTo, next);
   },
   computed: {

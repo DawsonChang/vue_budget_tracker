@@ -90,7 +90,7 @@ export default {
           this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
           break;
         default:
-          console.log(item.title);
+          //console.log(item.title);
       }
     }
   },

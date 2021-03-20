@@ -48,7 +48,7 @@ export default {
     this.timeline.forEach((item) => {
       item.icon = this.getIcon(item.category);
     });
-    console.log(this.timeline);
+    //console.log(this.timeline);
   },
   methods: {
     getIcon(category) {
