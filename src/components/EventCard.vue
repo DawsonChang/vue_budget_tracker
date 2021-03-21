@@ -1,4 +1,5 @@
 <template>
+  <!-- when hover to this card, the "hover" var will be true -->
   <v-hover v-slot:default="{ hover }" open-delay="50" close-delay="50">
     <v-card
       width="400"
@@ -6,10 +7,12 @@
       class="mx-auto mt-5 event-card -shadow eventCard"
       :elevation="hover ? 10 : 4"
     >
-      <div @mouseover="active = true" @mouseleave="active = false">
+      <!-- active 控制右上角刪除按鈕的出現 (可以用 hover 就好)-->
+      <!-- <div @mouseover="active = true" @mouseleave="active = false"> -->
+      <div>
         <v-icon
           large
-          v-show="active"
+          v-show="hover"
           class="delete icon-close-box"
           color="#424242"
           @click="dialog = true"
@@ -19,6 +22,7 @@
           <DeleteDialog :event="event" @dialogClose="dialog = false" />
         </v-dialog>
 
+        <!-- :to 的 params 給 router, 還有當作 props 給下個 component -->
         <router-link
           class="event-link"
           :to="{ name: 'event-show', params: { id: event.id, page: page } }"
@@ -69,7 +73,6 @@ export default {
   },
   data: function() {
     return {
-      active: false,
       dialog: false,
       mdiCloseBox,
       mdiClockOutline,

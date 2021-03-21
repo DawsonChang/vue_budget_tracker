@@ -97,6 +97,34 @@
       "time": "18:00",
       "location": "Green Street",
       "description": "Praesent a finibus urna, vel sollicitudin purus. Proin vel suscipit enim. Aliquam ornare nisi vitae nunc vehicula mollis. Vivamus venenatis tempus tempus. Nunc nulla tellus, pharetra et rhoncus sit amet, bibendum molestie justo. Suspendisse ac sollicitudin felis. "
+    },
+    {
+      "id": 9028180,
+      "user": {
+        "id": "abc123",
+        "name": "TS Chang"
+      },
+      "title": "aaa",
+      "category": "Bill & Fees",
+      "amount": "1000",
+      "date": "2021-04-01",
+      "time": "0:00",
+      "location": "bbb",
+      "description": "vvvv"
+    },
+    {
+      "id": 4738134,
+      "user": {
+        "id": "abc123",
+        "name": "TS Chang"
+      },
+      "title": "rrr",
+      "category": "Transport",
+      "amount": "432",
+      "date": "2021-03-08",
+      "time": "2:00",
+      "location": "",
+      "description": "yy"
     }
   ]
 }

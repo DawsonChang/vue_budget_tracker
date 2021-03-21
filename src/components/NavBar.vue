@@ -1,5 +1,5 @@
 <template >
-  <v-app id="App" :style="{background: $vuetify.theme.themes[theme].background}">
+  <v-app id="App" :style="{background: $vuetify.theme.themes[toggleTheme].background}">
     <v-navigation-drawer
       v-model="drawer"
       class="primary accent-4"
@@ -49,7 +49,7 @@
     </v-app-bar>
 
     <v-main id="screen" class="pb-0">
-      <v-container fluid class="ma-0 pa-0">
+      <v-container fluid class="mt-5 pa-0">
         <router-view :key="$route.fullPath" />
       </v-container>
     </v-main>
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import { mdiArrowLeft } from "@mdi/js";
+import { mdiClose } from "@mdi/js";
 import { mdiViewDashboard } from "@mdi/js";
 import { mdiAccountBox } from "@mdi/js";
 import { mdiGavel } from "@mdi/js";
@@ -66,9 +66,8 @@ import { mdiPalette } from "@mdi/js";
 export default {
   data: () => ({
     drawer: false,
-    mdiArrowLeft,
     items: [
-      { title: "Back", icon: mdiArrowLeft, dis: false },
+      { title: "Close", icon: mdiClose, dis: false },
       { title: "Dashboard", icon: mdiViewDashboard, dis: false },
       { title: "Theme", icon: mdiPalette, dis: false },
       { title: "Account", icon: mdiAccountBox, dis: true },
@@ -78,7 +77,7 @@ export default {
   methods: {
     listFunction(item) {
       switch (item.title) {
-        case "Back":
+        case "Close":
           this.drawer = false;
           break;
         case "Dashboard":
@@ -95,11 +94,11 @@ export default {
     }
   },
   computed: {
-    theme() {
+    toggleTheme() {
       return this.$vuetify.theme.dark ? "dark" : "light";
     },
     getFirstLetter() {
-      const user = this.$store.state.user.user;
+      const { user } = this.$store.state.user;
       return user.name.substring(0, 1);
     }
   }
@@ -111,6 +110,7 @@ export default {
 .toolbarTitle {
   text-decoration: none;
   color: white;
+  font-family: "Kalam", cursive;
 }
 
 #screen {

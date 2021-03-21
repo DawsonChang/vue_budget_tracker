@@ -8,7 +8,7 @@
           id="check-form"
           ref="form"
           v-model="valid"
-          :lazy-validation="lazy"
+          :lazy-validation="true"
         >
           <v-text-field
             v-model="newEvent.title"
@@ -115,11 +115,9 @@
 </template>
 
 <script>
-// import Datepicker from "vuejs-datepicker";
 
 export default {
   components: {
-    // Datepicker
   },
   created() {
     // clean up the event object
@@ -165,7 +163,7 @@ export default {
         });
     },
     createFreshEventObject() {
-      const id = Math.floor(Math.random() * 100000);
+      const id = Math.floor(Math.random() * 10000000);
       const user = this.$store.state.user.user;
 
       return {
@@ -180,6 +178,7 @@ export default {
         description: ""
       };
     },
+    // validate ref 偵測 form 裡面 有沒有任何 error
     validate() {
       this.$refs.form.validate();
     }
@@ -187,16 +186,6 @@ export default {
   computed: {
     fromDateDisp() {
       return this.fromDateVal;
-    }
-  },
-
-  watch: {
-    pickerDate() {
-      this.notes = [
-        this.allNotes[Math.floor(Math.random() * 5)],
-        this.allNotes[Math.floor(Math.random() * 5)],
-        this.allNotes[Math.floor(Math.random() * 5)]
-      ].filter((value, index, self) => self.indexOf(value) === index);
     }
   }
 };

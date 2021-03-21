@@ -51,16 +51,24 @@ export const actions = {
       commit("SET_EVENTS", response.data);
     });
   },
+  // 在 router 呼叫此 action (event-show 的 beforeEnter 呼叫)
+  // 這樣能在進去頁面前設定好 event，EventShow 就能在 ...mapState 抓到
   fetchEvent({ commit, getters }, id) {
+    // 不是把此 event 的 data 直接傳進component, 而是先傳id, 再由id去搜尋對應的event
+    // getters.getEventById(id) 即是在做搜尋
     const event = getters.getEventById(id);
     if (event) {
       commit("SET_EVENT", event);
-    } else {
-      return EventService.getEvent(id).then((response) => {
-        commit("SET_EVENT", response.data);
-        return response.data;
-      });
-    }
+    } 
+    // 以下的 else 其實不需要，因為從前一頁進來event一定會有資料
+    
+    // else { // 如果沒有找到代表不是從EventCard點進去，而是直接在網址輸入id
+    //          // 此時會用getEvent從資料庫中搜尋此id的event
+    //   return EventService.getEvent(id).then((response) => {
+    //     commit("SET_EVENT", response.data);
+    //     return response.data;
+    //   });
+    // }
   },
   deleteEvent({ commit, getters }, id) {
     const event = getters.getEventById(id);

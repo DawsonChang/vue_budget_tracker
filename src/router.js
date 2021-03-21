@@ -20,7 +20,8 @@ const router = new Router({
       props: true,
     },
     {
-      path: "/event/:id",
+      path: "/event/:id", // :id 是來自 EventCard :to="{ name: 'event-show', 
+                          // params: { id: event.id, page: page } }"
       name: "event-show",
       component: EventShow,
       props: true,

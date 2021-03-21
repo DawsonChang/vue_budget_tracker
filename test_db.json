@@ -1,0 +1,51 @@
+{
+    "user": [
+        {
+            "id": "abc123",
+            "account": "aaa",
+            "password": "aaa",
+            "name": "T.S. Chang"
+        },
+        {
+            "id": "xyz123",
+            "account": "bbb",
+            "password": "bbb",
+            "name": "Alex Wang"
+        }
+    ],
+    "abc123": {
+        "name": "T.S. Chang",
+        "events": [
+            {
+                "id": 15427,
+                "title": "5 Penciles",
+                "category": "Family & Personal",
+                "amount": "20",
+                "date": "2020-04-28",
+                "time": "10:00",
+                "location": "RGB bookstore",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum nisi nec turpis semper vulputate. Nulla facilisi. In fringilla tempor pulvinar. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum auctor augue non massa facilisis, ac finibus neque porta. Quisque eget enim justo."
+              }
+        ]
+    },
+    "xyz123": {
+        "name":"Alex Wang",
+        "events": [
+            {
+                "id": 36325,
+                "user": {
+                  "id": "abc123",
+                  "name": "TS Chang"
+                },
+                "title": "Medicine tablet",
+                "category": "Healthcare",
+                "amount": "150",
+                "date": "2020-05-27",
+                "time": "14:00",
+                "location": "Med care center",
+                "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum nisi nec turpis semper vulputate. Nulla facilisi. In fringilla tempor pulvinar. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum auctor augue non massa facilisis, ac finibus neque porta. Quisque eget enim justo."
+            }
+        ]
+    }
+
+}
