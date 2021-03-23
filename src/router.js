@@ -11,6 +11,7 @@ import store from "@/store/store";
 Vue.use(Router);
 
 const router = new Router({
+  // to deploy on github pages, change "mode: history" to "mode: hash"
   mode: "hash",
   routes: [
     {
