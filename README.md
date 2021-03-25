@@ -1,8 +1,11 @@
 # Budget-Tracker
 
-### Deploy on Heroku
+### Deploy on github (must run db.json on your local machine)
+https://dawsonchang.github.io/vue_budget_tracker/#/
 
-https://budget-tracker-dsc.herokuapp.com/
+~~### Deploy on Heroku~~
+
+~~https://budget-tracker-dsc.herokuapp.com/~~
 
 
 ### Database(json-server) on Heroku
