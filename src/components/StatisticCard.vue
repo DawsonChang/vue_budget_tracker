@@ -29,7 +29,9 @@ export default {
     };
   },
   mounted: function() {
+    // 在 mounted 時要啟用此動畫，並在 updated 裡更新
     this.number = this.statistic.value + 1;
+    // 監測 this.$data 這個 object，目標是讓 tweenedNumber === this.number
     gsap.to(this.$data, { duration: 0.8, tweenedNumber: this.number });
   },
   updated: function() {
@@ -39,6 +41,7 @@ export default {
 
   computed: {
     animatedNumber: function() {
+      // toFixed: 轉為string && 四捨五入至整數位
       return this.tweenedNumber.toFixed(0);
     },
   },
