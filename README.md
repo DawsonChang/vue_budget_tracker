@@ -1,5 +1,9 @@
 # Budget-Tracker
 
+#### Stack: Vue.js, json-server, JavaScript, CSS, HTML
+
+![image](https://github.com/DawsonChang/project/blob/master/vue_budget_tracker2.gif)
+
 ### Deploy on github (must run db.json on your local machine)
 https://dawsonchang.github.io/vue_budget_tracker/#/
 
